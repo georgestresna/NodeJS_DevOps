@@ -1,0 +1,34 @@
+variables:
+  APP_NAME: "appNodeTesrt"
+
+image: ubuntu:latest
+
+stages:
+  - test
+  - build
+
+test:
+  stage: test
+  image: node:18.19.1
+  before-script:
+    - echo "Running tests on $APP_NAME"
+    - npm install
+  script:
+    - echo
+    - npm run test
+  cache:
+    key: node_modules
+    paths:
+      - node_modules
+  after-script:
+    - echo "Tests complete"
+
+build:
+  stage: build
+  image: docker:28.4.0
+  script:
+    - docker build -t appnode .
+  after_script:
+    - docker push appnode
+  only:
+    - main

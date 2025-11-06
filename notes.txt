@@ -7,6 +7,28 @@ Prefferably run: sudo docker run --name appTest -p 3000:3000 appnodetest (give i
 when i stop the app i can just run sudo docker stop appTest, and not need the ONTAINER ID
 
 Github
-git remote add gitlab git@.....   #add another git remote
-git checkout master/gitlab/...      #switch branches
-gir branch [-r(remote) -a(all)]optional       #view all branches
+git remote add gitlab git@.....             # add another git remote
+git checkout master/gitlab/...              #switch branches
+gir branch [-r(remote) -a(all)]optional     #view all branches
+git push -u gitlab --all                    #copy the commit to gitlab from github
+
+Gitlab YAML (https://spacelift.io/blog/gitlab-ci-yml#gitlabciyml-file-keywords)
+image: ubuntu:latest #like the one in FROM in Dockerfile
+
+stages: 
+    - test
+    - build
+test_job:
+    stage: test
+
+cache:
+    key: node_modules
+    paths:
+      - node_modules
+
+#what to keep after the job is complete
+build:
+  artifacts:
+    paths:
+      - out/bin/
+
