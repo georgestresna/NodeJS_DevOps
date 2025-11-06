@@ -25,10 +25,14 @@ test:
 
 build:
   stage: build
-  image: docker:28.4.0
+  image: docker:25.0
+  services:
+    - docker:25.0-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - docker build -t appnode .
+    - docker build -t $DOCKER_IMAGE .
   after_script:
-    - docker push appnode
-  only:
-    - main
+    - docker push $DOCKER_IMAGE
+  variables:
+    DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
