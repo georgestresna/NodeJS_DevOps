@@ -6,3 +6,7 @@ Played around with the Dockerfile.
 Prefferably run: sudo docker run --name appTest -p 3000:3000 appnodetest (give it a name); so that 
 when i stop the app i can just run sudo docker stop appTest, and not need the ONTAINER ID
 
+Github
+git remote add gitlab git@.....   #add another git remote
+git checkout master/gitlab/...      #switch branches
+gir branch [-r(remote) -a(all)]optional       #view all branches
