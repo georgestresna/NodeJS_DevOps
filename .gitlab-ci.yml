@@ -10,7 +10,7 @@ stages:
 test:
   stage: test
   image: node:18.19.1
-  before-script:
+  before_script:
     - echo "Running tests on $APP_NAME"
     - npm install
   script:
@@ -20,7 +20,7 @@ test:
     key: node_modules
     paths:
       - node_modules
-  after-script:
+  after_script:
     - echo "Tests complete"
 
 build:
