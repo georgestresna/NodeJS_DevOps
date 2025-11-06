@@ -1,0 +1,8 @@
+No dependencies momentarly, will only run app.js,
+so i could have said '''COPY app.js . ''', but '''COPY . .'''
+can be used along the way when scaling up the app.
+
+Played around with the Dockerfile.
+Prefferably run: sudo docker run --name appTest -p 3000:3000 appnodetest (give it a name); so that 
+when i stop the app i can just run sudo docker stop appTest, and not need the ONTAINER ID
+
